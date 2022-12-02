@@ -19,9 +19,9 @@ Compiles to:
 ## Usage
 
 ```
-yarn start
-```
+# Run server
+yarn start 
 
-```
-yarn build
+# Watch & Compile
+yarn watch
 ```
