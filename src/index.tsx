@@ -1,48 +1,16 @@
-import { h, render, Component } from 'preact'
-import { createStore, Provider, connect } from 'unistore/full/preact'
+import { h, render} from 'preact'
+import Router from 'preact-router'
+import {RandomEmoji} from './RandomEmoji'
 
-import './style.less'
-
-interface State {
-  count: number
-}
-
-let store = createStore<State>({ count: 0 })
-
-let actions = (store) => ({
-  increment (state: State): State {
-    return { count: state.count + 1 }
-  },
-
-  decrement (state: State): State {
-    return { count: state.count - 1 }
-  }
-})
-
-interface Props {
-  count?: number,
-  increment?: any,
-  decrement?: any
-}
-
-@connect('count', actions)
-class App extends Component<Props, any> {
-  render () {
+function Render () {
     return (
-      <div>
-        <header>App Header Here</header>
-        <section>
-          <p>Count: {this.props.count}</p>
-          <button onClick={this.props.increment}>Increment</button>
-          <button onClick={this.props.decrement}>Decrement</button>
-        </section>
-      </div>
+        <div>
+            <header>App Header Here</header>
+            <Router>
+                <RandomEmoji path="/2" />
+            </Router>
+        </div>
     )
-  }
 }
 
-render((
-  <Provider store={store}>
-    <App />
-  </Provider>
-), document.body)
+render(<Render />, document.body)

@@ -4,6 +4,10 @@ const path = require('path');
 
 module.exports = {
     watch: true,
+    watchOptions: {
+        aggregateTimeout: 200,
+        poll: 1000,
+    },
     devtool: "inline-source-map",
     entry: {
         index: './src/index.tsx'
@@ -40,6 +44,13 @@ module.exports = {
                 ],
             },
         ]
+    },
+    devServer: {
+        hot: true,
+        host: "localhost",
+        port: 1337,
+        historyApiFallback: true,
+        static: path.resolve(__dirname, "./dist"),
     },
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx', '.json']
